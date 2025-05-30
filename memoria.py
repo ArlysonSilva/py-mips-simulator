@@ -1,3 +1,4 @@
+# memoria.py
 MEMORIA = {}
 
 def ler_memoria(endereco):

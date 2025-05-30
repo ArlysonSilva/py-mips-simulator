@@ -1,26 +1,13 @@
-def tipo_instrucao(opcode):
-    if opcode in ["add", "sub", "and", "or", "slt"]:
-        return "R"
-    elif opcode in ["addi", "lw", "sw", "beq", "bne"]:
-        return "I"
-    elif opcode in ["j", "jal"]:
-        return "J"
-    return "Desconhecido"
-
-def ler_instrucoes(arquivo):
-    instrucoes = []
-    with open(arquivo, "r") as f:
+def carregar_programa(caminho):
+    programa = []
+    with open(caminho, "r") as f:
         for linha in f:
             linha = linha.strip()
-            if not linha or linha.startswith("#"):
-                continue  # Ignorar linhas vazias ou comentários
-            partes = linha.replace(",", "").split()
+            if linha == "" or linha.startswith("#"):
+                continue
+            partes = linha.split()
             opcode = partes[0]
-            args = partes[1:]
-            instrucoes.append({
-                "linha": linha,
-                "opcode": opcode,
-                "args": args,
-                "tipo": tipo_instrucao(opcode)
-            })
-    return instrucoes
+            args = linha[len(opcode):].strip().split(",")
+            args = [arg.strip() for arg in args]
+            programa.append({"opcode": opcode, "args": args, "linha": linha})
+    return programa

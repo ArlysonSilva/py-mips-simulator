@@ -1,0 +1,4 @@
+clock_mhz=1000
+tipo_i=3
+tipo_r=2
+tipo_j=1
