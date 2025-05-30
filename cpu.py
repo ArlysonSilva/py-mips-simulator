@@ -1,4 +1,5 @@
-MEMORIA = {}
+from memoria import MEMORIA
+
 
 REGISTRADORES = {
     "$zero": 0, "$t0": 0, "$t1": 0, "$t2": 0, "$t3": 0,
